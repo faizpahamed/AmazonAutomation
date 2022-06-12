@@ -26,6 +26,8 @@ public class ProductSearch {
 		// TODO Auto-generated method stub
 		
 		String insertProductDetails =" insert into product_details(product_title,product_price,product_description) values (?,?,?)";
+		
+		String testInsert =" insert into product_details(product_title,product_price) values (?,?)";
 		String baseUrl = " http://amazon.in/";
 		System.setProperty("webdriver.chrome.driver","./resources/chromedriver101.exe");
 
@@ -69,12 +71,15 @@ public class ProductSearch {
 		
 		Thread.sleep(3000);
 		List<WebElement> searchResult = driver.findElements(By.xpath("//a[@class='a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal']"));
-		 System.out.println(searchResult.size());
+	
+		 
+	 
+		 
+		 
 		searchResult.get(0).click();
 		
 		Set<String> winHandles = driver.getWindowHandles();
-		
-		
+			
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 	
 		
@@ -92,9 +97,7 @@ public class ProductSearch {
 				String product_description = driver.findElement(By.id("feature-bullets")).getText();
 				
 				
-				System.out.println(product_title);
-				System.out.println(product_price);
-				System.out.println(product_description);
+				
 				PreparedStatement stmt = con.prepareStatement(insertProductDetails);
 			    stmt.setString(1, product_title);
 			    stmt.setString(2, product_price);
@@ -112,12 +115,14 @@ public class ProductSearch {
 			 driver.findElement(By.id("twotabsearchtextbox")).clear();
 			 }
 		 
-		 }
+		
 		 
 		 System.out.println(count);
 		}
+		
+     }
 		con.close();
-
 	}
-
 }
+
+
